@@ -5,5 +5,5 @@ def app(environ, start_response):
 
 	start_response("200 OK", [("Content-Type", "text/plain")])
 
-	return ['%s=%s<br>' % (k, params[k][0]) for k in params]
+	return ['%s=%s\n' % (k, params[k][0]) for k in params]
 	
