@@ -4,6 +4,13 @@ def app(environ, start_response):
 	params = urlparse.parse_qs(environ["QUERY_STRING"])
 
 	start_response("200 OK", [("Content-Type", "text/plain")])
-
-	return ['%s=%s\n' % (k, params[k][0]) for k in params]
+	body = []
+	for keys, values in params.iteritems():
+		if len(values) > 1:
+			for val in values:
+				body.append('%s=%s' % (keys, val))
+				continue
+		else:
+			body.append('%s=%s' % (keys, values))
+	return body
 	
